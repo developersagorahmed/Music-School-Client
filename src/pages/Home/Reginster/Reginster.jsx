@@ -1,9 +1,10 @@
 import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
-import animation from "../../../assets/registerPageAnimation.json";
+
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-
+import { FcGoogle } from "react-icons/fc";
+import ani from "../../../assets/registerpage.json";
 const Reginster = () => {
 	const [error, setError] = useState("");
 	const { register, handleSubmit } = useForm();
@@ -55,7 +56,7 @@ const Reginster = () => {
 						/>
 					</div>
 					<input
-						className="w-full btn bg-[#023BAF] text-white hover:text-black "
+						className="w-full btn mt-4 bg-[#023BAF] text-white hover:text-black "
 						type="submit"
 						value="Login"
 					/>
@@ -68,9 +69,17 @@ const Reginster = () => {
 						</p>
 					</Link>
 				</span>
+				<span>________________ or __________________</span>
+				<button className="mt-6 flex bg-base-200 px-4 py-2 w-full rounded-sm hover:bg-black hover:text-white transition duration-700">
+					<FcGoogle className="w-9 h-9"></FcGoogle>
+					<span className="font-bold text-lg ml-4 mt-[3px]">
+						Login With Google
+					</span>
+				</button>
 			</div>
+
 			<div>
-				<Lottie animationData={animation} loop={true}></Lottie>
+				<Lottie animationData={ani} loop={true}></Lottie>
 			</div>
 		</div>
 	);

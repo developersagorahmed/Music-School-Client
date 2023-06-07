@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
-import icon from "../../../assets/login.png";
+import Lottie from "lottie-react";
+
 import { BiShow, BiHide } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Components/AuthProvider";
+import ani from "../../../assets/loginPage.json";
 
 const Login = () => {
 	const [error, setError] = useState("");
@@ -114,7 +116,7 @@ const Login = () => {
 				</div>
 
 				<div className="w-[600px]">
-					<img src={icon} alt="" />
+					<Lottie animationData={ani} loop={true}></Lottie>
 				</div>
 			</div>
 		</>
