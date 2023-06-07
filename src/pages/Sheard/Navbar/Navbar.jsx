@@ -28,10 +28,18 @@ const Navbar = () => {
 						tabIndex={0}
 						className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 					>
-						<li>HOME</li>
-						<li>PROGRAM</li>
-						<li>ABOUT SCHOOL</li>
-						<li>CONTACTS</li>
+						<li className="transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							HOME
+						</li>
+						<li className="transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							INSTRUCTORS
+						</li>
+						<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							CLASSES
+						</li>
+						<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							DASHBOARD
+						</li>
 					</ul>
 				</div>
 
@@ -41,24 +49,33 @@ const Navbar = () => {
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
-					<li className="transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
-						HOME
-					</li>
-					<li className="transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
-						PROGRAM
-					</li>
-					<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
-						ABOUT SCHOOL
-					</li>
-					<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
-						CONTACTS
-					</li>
+					<Link to={"/"}>
+						<li className="transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							HOME
+						</li>
+					</Link>
+					<Link to={"/instructors"}>
+						<li className="transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							INSTRUCTORS
+						</li>
+					</Link>
+					<Link to={"/classes"}>
+						<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							CLASSES
+						</li>
+					</Link>
+					<Link to={"/dashboard"}>
+						<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							DASHBOARD
+						</li>
+					</Link>
 				</ul>
 			</div>
 			<div className="navbar-end">
 				<Link to={"/login"}>
 					<span className="flex  transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
-						<BiLogIn className="w-5 h-5 mt-[2px] mr-2"></BiLogIn> Login
+						<BiLogIn className="w-7 h-7 mt-[2px] mr-2"></BiLogIn>{" "}
+						<span className="text-xl">Login</span>
 					</span>
 				</Link>
 				<div className="dropdown dropdown-end">

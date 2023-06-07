@@ -10,7 +10,20 @@ const Login = () => {
 	const [show, setShow] = useState(false);
 	const [email, setEmail] = useState("");
 	const [Password, setPassword] = useState("");
-	const { handleGoogleSignIn } = useContext(AuthContext);
+	const { handleGoogleSignIn, signIn } = useContext(AuthContext);
+
+	const handleLogin = (event) => {
+		event.preventDefault();
+		if (Password.length < 6) {
+			setError("please provide a valid password");
+		}
+		signIn()
+			.then((result) => {
+				const user = result.user;
+				console.log(user);
+			})
+			.catch((error) => console.log(error));
+	};
 
 	const handleLoginWithGoogle = () => {
 		handleGoogleSignIn(email, Password)
@@ -29,7 +42,7 @@ const Login = () => {
 			<div className="flex justify-evenly">
 				<div className="flex justify-evenly">
 					<div>
-						<form className="mt-16">
+						<form onSubmit={handleLogin} className="mt-16">
 							<p className="text-red-900">{error}</p>
 							<div className="form-control ">
 								<span className="label-text ">Email</span>
@@ -79,7 +92,10 @@ const Login = () => {
 								<Link className=" text-blue" to="/register">
 									<p>
 										Dont't have an Account
-										<span className="text-blue underline"> Register</span>
+										<span className="text-blue font-semibold underline">
+											{" "}
+											Register
+										</span>
 									</p>
 								</Link>
 							</span>
