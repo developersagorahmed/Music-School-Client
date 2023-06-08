@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import icon from "../../../assets/logo.png";
 import { Link } from "react-router-dom";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiUser } from "react-icons/bi";
+
+import { AuthContext } from "../../../Components/AuthProvider";
 
 const Navbar = () => {
+	const { user, logOut } = useContext(AuthContext);
+	const logoutBtn = () => {
+		logOut().then();
+	};
+	console.log(user);
 	return (
 		<div className="navbar bg-base-100">
 			<div className="navbar-start">
@@ -37,9 +44,15 @@ const Navbar = () => {
 						<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
 							CLASSES
 						</li>
-						<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
-							DASHBOARD
-						</li>
+						{user?.email ? (
+							<>
+								<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+									DASHBOARD
+								</li>
+							</>
+						) : (
+							<></>
+						)}
 					</ul>
 				</div>
 
@@ -64,39 +77,58 @@ const Navbar = () => {
 							CLASSES
 						</li>
 					</Link>
-					<Link to={"/dashboard"}>
-						<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
-							DASHBOARD
-						</li>
-					</Link>
+					{user ? (
+						<>
+							{" "}
+							<Link to={"/dashboard"}>
+								<li className="transition duration-300 cursor-pointer font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+									DASHBOARD
+								</li>
+							</Link>
+						</>
+					) : (
+						<></>
+					)}
 				</ul>
 			</div>
 			<div className="navbar-end">
-				<Link to={"/login"}>
-					<span className="flex  transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
-						<BiLogIn className="w-7 h-7 mt-[2px] mr-2"></BiLogIn>{" "}
-						<span className="text-xl">Login</span>
-					</span>
-				</Link>
-				<div className="dropdown dropdown-end">
-					<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-						<div className="w-10 rounded-full">
-							<img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-						</div>
-					</label>
-					<ul
-						tabIndex={0}
-						className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+				{user ? (
+					<span
+						onClick={logoutBtn}
+						className="flex  transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]"
 					>
-						<li className="transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mb-4 mr-6 hover:text-[#E7B622] ml-5">
-							Dashboard
-						</li>
-
-						<li className="transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622] ml-5">
-							Logout
-						</li>
-					</ul>
-				</div>
+						<BiLogIn className="w-7 h-7 mt-[2px] mr-2"></BiLogIn>{" "}
+						<span className="text-xl">Logout</span>
+					</span>
+				) : (
+					<Link to={"/login"}>
+						<span className="flex  transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]">
+							<BiLogIn className="w-7 h-7 mt-[2px] mr-2"></BiLogIn>{" "}
+							<span className="text-xl">Login</span>
+						</span>
+					</Link>
+				)}
+				{user ? (
+					<>
+						<div className="dropdown dropdown-end">
+							<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+								<div className="w-10 rounded-full">
+									{user?.photoURL ? (
+										<>
+											<img src={user?.photoURL} alt="" />
+										</>
+									) : (
+										<>
+											<BiUser></BiUser>
+										</>
+									)}
+								</div>
+							</label>
+						</div>
+					</>
+				) : (
+					<></>
+				)}
 			</div>
 		</div>
 	);
