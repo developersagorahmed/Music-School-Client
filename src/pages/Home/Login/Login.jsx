@@ -6,39 +6,71 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Components/AuthProvider";
 import ani from "../../../assets/loginPage.json";
+import Swal from "sweetalert2";
 
 const Login = () => {
 	const [error, setError] = useState("");
-	const [show, setShow] = useState(false);
+	const [show, setShow] = useState(true);
 	const [email, setEmail] = useState("");
-	const [Password, setPassword] = useState("");
+	const [password, setPassword] = useState("");
 	const { handleGoogleSignIn, signIn } = useContext(AuthContext);
 
 	const handleLogin = (event) => {
 		event.preventDefault();
-		if (Password.length < 6) {
+		if (password.length < 6) {
 			setError("please provide a valid password");
 		}
-		signIn()
+		signIn(email, password)
 			.then((result) => {
 				const user = result.user;
 				console.log(user);
+				Swal.fire({
+					position: "top-center",
+					icon: "success",
+					title: "Successfully Login",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+				event.target.reset();
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => {
+				console.log(error);
+				Swal.fire({
+					position: "top-center",
+					icon: "error",
+					title: "failed to Login",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+			});
 	};
 
 	const handleLoginWithGoogle = () => {
-		handleGoogleSignIn(email, Password)
+		handleGoogleSignIn()
 			.then((result) => {
 				const user = result.user;
-				console.log(user);
+				Swal.fire({
+					position: "top-center",
+					icon: "success",
+					title: "Successfully Login",
+					showConfirmButton: false,
+					timer: 1500,
+				});
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => {
+				Swal.fire({
+					position: "top-center",
+					icon: "error",
+					title: "failed to Login",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+			});
 	};
 
 	return (
 		<>
-			<h2 className="text-center text-3xl font-bold underline text-[#3E2B26]">
+			<h2 className="text-center text-3xl font-bold underline mt-16 text-[#3E2B26]">
 				Log in
 			</h2>
 			<div className="flex justify-evenly">
@@ -63,7 +95,7 @@ const Login = () => {
 								<input
 									onChange={(e) => setPassword(e.target.value)}
 									type={show ? "password" : "text"}
-									placeholder="********"
+									placeholder="Password"
 									className="input input-bordered rounded-md"
 									required
 								/>

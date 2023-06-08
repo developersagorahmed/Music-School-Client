@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
+import css from "../Navbar/navbar.css";
 import icon from "../../../assets/logo.png";
 import { Link } from "react-router-dom";
-import { BiLogIn, BiUser } from "react-icons/bi";
+import { BiLogIn, BiUser, BiLogOut } from "react-icons/bi";
 
 import { AuthContext } from "../../../Components/AuthProvider";
 
@@ -12,7 +13,7 @@ const Navbar = () => {
 	};
 	console.log(user);
 	return (
-		<div className="navbar bg-base-100">
+		<div className="navbar  fixed z-10 top-0 max-w-[2300px]  bg-opacity-30 mx-auto xl:px-28 md:px-10 sm:px-2 px-4 bg-base-100">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -91,13 +92,13 @@ const Navbar = () => {
 					)}
 				</ul>
 			</div>
-			<div className="navbar-end">
+			<div className="navbar-end md:pr-12">
 				{user ? (
 					<span
 						onClick={logoutBtn}
 						className="flex  transition duration-300 cursor-pointer	font-bold text-[#3E2B66] mr-6 hover:text-[#E7B622]"
 					>
-						<BiLogIn className="w-7 h-7 mt-[2px] mr-2"></BiLogIn>{" "}
+						<BiLogOut className="w-7 h-7 mt-[2px] mr-2"></BiLogOut>{" "}
 						<span className="text-xl">Logout</span>
 					</span>
 				) : (

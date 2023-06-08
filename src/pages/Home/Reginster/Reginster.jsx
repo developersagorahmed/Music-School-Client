@@ -4,7 +4,8 @@ import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import ani from "../../../assets/registerpage.json";
 import { AuthContext } from "../../../Components/AuthProvider";
-import { toast } from "react-hot-toast";
+
+import Swal from "sweetalert2";
 const Reginster = () => {
 	const {
 		registerUser,
@@ -32,21 +33,39 @@ const Reginster = () => {
 
 		registerUser(email, password)
 			.then((result) => {
-				toast.success("Signup Successful");
 				updateUserProfile(name, photo)
 					.then(() => {
 						setError("");
-						toast.success("Signup Successful");
+						Swal.fire({
+							position: "top-center",
+							icon: "success",
+							title: "Successfully Registered",
+							showConfirmButton: false,
+							timer: 1500,
+						});
+						event.target.reset();
 					})
 					.catch((error) => {
 						setLoading(false);
 						setError(error.message);
-						toast.error(error.message);
+						Swal.fire({
+							position: "top-center",
+							icon: "error",
+							title: "failed to Registered",
+							showConfirmButton: false,
+							timer: 1500,
+						});
 					});
 			})
 			.catch((err) => {
 				setError(err.message);
-				toast.error(err.message);
+				Swal.fire({
+					position: "top-center",
+					icon: "error",
+					title: "failed to Registered",
+					showConfirmButton: false,
+					timer: 1500,
+				});
 			});
 	};
 
@@ -54,98 +73,109 @@ const Reginster = () => {
 		handleGoogleSignIn()
 			.then((result) => {
 				const user = result.user;
-				console.log(user);
+				Swal.fire({
+					position: "top-center",
+					icon: "success",
+					title: "Successfully Registered",
+					showConfirmButton: false,
+					timer: 1500,
+				});
 			})
 			.catch((error) => setError(error.message));
 	};
 
 	return (
-		<div className="flex justify-evenly my-4">
-			<div>
-				<form onSubmit={handleSubmit} className="">
-					<p className="text-red-900">{error}</p>
-					<div className="form-control ">
-						<span className="label-text ">Email</span>
+		<div>
+			<h2 className="text-center text-3xl font-bold underline mt-16 text-[#3E2B26]">
+				Register
+			</h2>
+			<div className="mt-16 flex justify-evenly my-4">
+				<div>
+					<form onSubmit={handleSubmit} className="">
+						<p className="text-red-900">{error}</p>
+						<div className="form-control ">
+							<span className="label-text ">Email</span>
 
-						<input
-							onChange={(e) => setEmail(e.target.value)}
-							type="email"
-							placeholder="email"
-							className="input input-bordered rounded-md"
-							required
-						/>
-					</div>
-					<div className="form-control mt-4">
-						<span className="label-text ">Name</span>
+							<input
+								onChange={(e) => setEmail(e.target.value)}
+								type="email"
+								placeholder="email"
+								className="input input-bordered rounded-md"
+								required
+							/>
+						</div>
+						<div className="form-control mt-4">
+							<span className="label-text ">Name</span>
 
-						<input
-							onChange={(e) => setName(e.target.value)}
-							type="text"
-							placeholder="Your Name"
-							className="input input-bordered rounded-md"
-							required
-						/>
-					</div>
-					<div className="form-control  mt-6">
-						<span className="label-text">Password</span>
+							<input
+								onChange={(e) => setName(e.target.value)}
+								type="text"
+								placeholder="Your Name"
+								className="input input-bordered rounded-md"
+								required
+							/>
+						</div>
+						<div className="form-control  mt-6">
+							<span className="label-text">Password</span>
 
-						<input
-							onChange={(e) => setPassword1(e.target.value)}
-							type="text"
-							placeholder="Password"
-							className="input input-bordered rounded-md"
-							required
-						/>
-					</div>
-					<div className="form-control  mt-6">
-						<span className="label-text">Conform Password</span>
+							<input
+								onChange={(e) => setPassword1(e.target.value)}
+								type="text"
+								placeholder="Password"
+								className="input input-bordered rounded-md"
+								required
+							/>
+						</div>
+						<div className="form-control  mt-6">
+							<span className="label-text">Conform Password</span>
 
+							<input
+								onChange={(e) => setCpassword1(e.target.value)}
+								type="text"
+								placeholder="Password"
+								className="input input-bordered rounded-md"
+								required
+							/>
+						</div>
+						<div className="form-control  mt-6">
+							<span className="label-text">Photo URL</span>
+							<input
+								onChange={(e) => setPhoto(e.target.value)}
+								type="text"
+								placeholder="Photo URL"
+								className="input input-bordered rounded-md"
+								required
+							/>
+						</div>
 						<input
-							onChange={(e) => setCpassword1(e.target.value)}
-							type="text"
-							placeholder="Password"
-							className="input input-bordered rounded-md"
-							required
+							className="w-full btn mt-4 bg-[#023BAF] text-white hover:text-black "
+							type="submit"
+							value="Register"
 						/>
-					</div>
-					<div className="form-control  mt-6">
-						<span className="label-text">Photo URL</span>
-						<input
-							onChange={(e) => setPhoto(e.target.value)}
-							type="text"
-							placeholder="Photo URL"
-							className="input input-bordered rounded-md"
-							required
-						/>
-					</div>
-					<input
-						className="w-full btn mt-4 bg-[#023BAF] text-white hover:text-black "
-						type="submit"
-						value="Login"
-					/>
-				</form>
-				<span className=" text-base label-text-alt link link-hover">
-					<Link className=" text-blue" to="/login">
-						<p>
-							Already have an Account
-							<span className="text-blue font-semibold underline"> Login</span>
-						</p>
-					</Link>
-				</span>
-				<span>________________ or __________________</span>
-				<button
-					onClick={handleGoogle}
-					className="mt-6 flex bg-base-200 px-4 py-2 w-full rounded-sm hover:bg-black hover:text-white transition duration-700"
-				>
-					<FcGoogle className="w-9 h-9"></FcGoogle>
-					<span className="font-bold text-lg ml-4 mt-[3px]">
-						Login With Google
+					</form>
+					<span className=" text-base label-text-alt link link-hover">
+						<Link className=" text-blue" to="/login">
+							<p>
+								Already have an Account
+								<span className="text-blue font-semibold underline">Login</span>
+							</p>
+						</Link>
 					</span>
-				</button>
-			</div>
+					<span>________________ or __________________</span>
+					<button
+						onClick={handleGoogle}
+						className="mt-6 flex bg-base-200 px-4 py-2 w-full rounded-sm hover:bg-black hover:text-white transition duration-700"
+					>
+						<FcGoogle className="w-9 h-9"></FcGoogle>
+						<span className="font-bold text-lg ml-4 mt-[3px]">
+							Login With Google
+						</span>
+					</button>
+				</div>
 
-			<div>
-				<Lottie animationData={ani} loop={true}></Lottie>
+				<div>
+					<Lottie animationData={ani} loop={true}></Lottie>
+				</div>
 			</div>
 		</div>
 	);
