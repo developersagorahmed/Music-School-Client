@@ -66,6 +66,11 @@ const Sidebar = () => {
 								My Selected Classes
 							</button>
 						</Link>
+						<Link to="/dashboard/myEnrolledClass">
+							<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
+								My Enrolled Classes
+							</button>
+						</Link>
 					</div>
 				</div>
 

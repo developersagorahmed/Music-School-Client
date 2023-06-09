@@ -7,6 +7,8 @@ import Error from "../pages/Sheard/Error/Error";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "../Components/PrivateRoute";
 import MySelectedClass from "../Components/DashboardCompo/MySelectedClass/MySelectedClass";
+import MyEnrolledClass from "../Components/DashboardCompo/MyEnrolledClass/MyEnrolledClass";
+import Payment from "../Components/DashboardCompo/Payment/Payment";
 
 export const router = createBrowserRouter([
 	{
@@ -23,14 +25,14 @@ export const router = createBrowserRouter([
 				element: <Login></Login>,
 			},
 			{
-				path: "register",
+				path: "/register",
 				element: <Reginster></Reginster>,
 			},
 		],
 	},
 	{
+		path: "/dashboard/",
 		errorElement: <Error></Error>,
-		path: "/dashboard",
 		element: (
 			<PrivateRoute>
 				<Dashboard></Dashboard>
@@ -40,6 +42,14 @@ export const router = createBrowserRouter([
 			{
 				path: "mySelectedClass",
 				element: <MySelectedClass></MySelectedClass>,
+			},
+			{
+				path: "myEnrolledClass",
+				element: <MyEnrolledClass></MyEnrolledClass>,
+			},
+			{
+				path: "payment",
+				element: <Payment></Payment>,
 			},
 		],
 	},
