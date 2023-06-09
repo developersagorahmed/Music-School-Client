@@ -9,11 +9,8 @@ import { AuthContext } from "../AuthProvider";
 const Sidebar = () => {
 	const navigate = useNavigate();
 	const { user, logOut } = useContext(AuthContext);
-	const [isActive, setActive] = useState("false");
-	// Sidebar Responsive Handler
-	const handleToggle = () => {
-		setActive(!isActive);
-	};
+	const [isActive, setActive] = useState("true");
+
 	const handleLogOut = () => {
 		logOut().then().then();
 		navigate("/");
@@ -21,7 +18,7 @@ const Sidebar = () => {
 	return (
 		<>
 			{/* Small Screen Navbar */}
-			<div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
+			<div className="bg-gray-100  text-gray-800 flex justify-between md:hidden">
 				<div>
 					<div className="block cursor-pointer p-4 font-bold">
 						<img src={Logo} alt="" />
@@ -64,9 +61,12 @@ const Sidebar = () => {
 
 					{/* Nav Items */}
 					<div className="flex flex-col justify-between flex-1 mt-6">
-
-                        <button className="btn btn-primary">Order</button>
-                    </div>
+						<Link to="/dashboard/mySelectedClass">
+							<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
+								My Selected Classes
+							</button>
+						</Link>
+					</div>
 				</div>
 
 				<div>

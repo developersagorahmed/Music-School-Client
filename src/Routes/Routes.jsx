@@ -5,6 +5,8 @@ import Login from "../pages/Home/Login/Login";
 import Reginster from "../pages/Home/Reginster/Reginster";
 import Error from "../pages/Sheard/Error/Error";
 import Dashboard from "../Layout/Dashboard";
+import PrivateRoute from "../Components/PrivateRoute";
+import MySelectedClass from "../Components/DashboardCompo/MySelectedClass/MySelectedClass";
 
 export const router = createBrowserRouter([
 	{
@@ -29,6 +31,16 @@ export const router = createBrowserRouter([
 	{
 		errorElement: <Error></Error>,
 		path: "/dashboard",
-		element: <Dashboard></Dashboard>,
+		element: (
+			<PrivateRoute>
+				<Dashboard></Dashboard>
+			</PrivateRoute>
+		),
+		children: [
+			{
+				path: "mySelectedClass",
+				element: <MySelectedClass></MySelectedClass>,
+			},
+		],
 	},
 ]);

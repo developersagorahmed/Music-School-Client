@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../../../Components/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const FullCart = ({ dat }) => {
 	const { user } = useContext(AuthContext);
+	const navigate = useNavigate();
 
-	console.log(dat, user);
 	const {
 		classname,
 		available_seats,
@@ -16,10 +18,52 @@ const FullCart = ({ dat }) => {
 		_id,
 	} = dat;
 
-	const buybtn = () => {
-        
+	const buyData = {
+		name: classname,
+		dat,
+		user: {
+			userName: user?.displayName,
+			userImg: user?.photoURL,
+			userEmail: user?.email,
+		},
+	};
 
-    };
+	const buyBtn = () => {
+		// post selectClass data to server
+		if (!user) {
+			navigate("/login");
+			return;
+		}
+		fetch("http://localhost:5000/selectclass", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(buyData),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.message) {
+					Swal.fire({
+						position: "top-center",
+						icon: "error",
+						title: "You Already Selected This Class",
+						showConfirmButton: false,
+						timer: 1500,
+					});
+				}
+				console.log(data);
+				if (data.acknowledged == true) {
+					Swal.fire({
+						position: "top-center",
+						icon: "success",
+						title: "Class added Successfully",
+						showConfirmButton: false,
+						timer: 1500,
+					});
+				}
+			});
+	};
 
 	return (
 		<div className="card lg:card-side bg-base-100 my-6 lg:h-[370px] shadow-xl">
@@ -48,7 +92,7 @@ const FullCart = ({ dat }) => {
 				</div>
 				<div className="card-actions justify-end  mt-4">
 					<button
-						onClick={buybtn}
+						onClick={buyBtn}
 						className="btn text-base bg-[#E7B622] font-bold"
 					>
 						Purchase
