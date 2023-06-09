@@ -11,9 +11,9 @@ const Navbar = () => {
 	const logoutBtn = () => {
 		logOut().then();
 	};
-	console.log(user);
+
 	return (
-		<div className="navbar  fixed z-10 top-0 max-w-[2300px]  bg-opacity-30 mx-auto xl:px-28 md:px-10 sm:px-2 px-4 bg-base-100">
+		<div className="navbar   fixed z-10 top-0 max-w-[2300px]  bg-opacity-30 mx-auto xl:px-28 md:px-10 sm:px-2 px-4 bg-base-100">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost lg:hidden">

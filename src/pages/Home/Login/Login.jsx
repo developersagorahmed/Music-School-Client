@@ -3,12 +3,15 @@ import Lottie from "lottie-react";
 
 import { BiShow, BiHide } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Components/AuthProvider";
 import ani from "../../../assets/loginPage.json";
 import Swal from "sweetalert2";
 
 const Login = () => {
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || "/";
 	const [error, setError] = useState("");
 	const [show, setShow] = useState(true);
 	const [email, setEmail] = useState("");
@@ -56,6 +59,7 @@ const Login = () => {
 					showConfirmButton: false,
 					timer: 1500,
 				});
+				navigate(from, { replace: true });
 			})
 			.catch((error) => {
 				Swal.fire({
@@ -70,7 +74,7 @@ const Login = () => {
 
 	return (
 		<>
-			<h2 className="text-center text-3xl font-bold underline mt-16 text-[#3E2B26]">
+			<h2 className="text-center text-4xl font-bold underline mt-[100px] pt-10 text-[#E7B622]">
 				Log in
 			</h2>
 			<div className="flex justify-evenly">
@@ -124,7 +128,7 @@ const Login = () => {
 						<div className="mt-4">
 							<span className=" text-base label-text-alt link link-hover">
 								<Link className=" text-blue" to="/register">
-									<p>
+									<p className="text-[#fff]">
 										Dont't have an Account
 										<span className="text-blue font-semibold underline">
 											{" "}
@@ -133,7 +137,9 @@ const Login = () => {
 									</p>
 								</Link>
 							</span>
-							<span>________________ or __________________</span>
+							<span className="text-[#fff]">
+								________________ or __________________
+							</span>
 						</div>
 						<button
 							onClick={handleLoginWithGoogle}

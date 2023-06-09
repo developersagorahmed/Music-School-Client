@@ -12,7 +12,7 @@ const Cart = ({ data }) => {
 				</div>
 
 				<div className="mx-auto badge text-lg font-semibold p-4 badge-outline">
-					Total Student{students}
+					Total Student : {students}
 				</div>
 			</div>
 		</div>

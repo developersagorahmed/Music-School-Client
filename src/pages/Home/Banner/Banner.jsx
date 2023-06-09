@@ -11,24 +11,24 @@ import img6 from "../../../assets/banner/img6.jpg";
 
 const Banner = () => {
 	return (
-		<Carousel className="my-20">
+		<Carousel className="py-24 ">
 			<div className="">
-				<img className="object-cover h-[80vh]" src={img1} />
+				<img className="object-cover h-[80vh] rounded-md" src={img1} />
 			</div>
 			<div>
-				<img className="object-cover h-[80vh]" src={img2} />
+				<img className="object-cover h-[80vh] rounded-md" src={img2} />
 			</div>
 			<div>
-				<img className="object-cover h-[80vh]" src={img3} />
+				<img className="object-cover h-[80vh] rounded-md" src={img3} />
 			</div>
 			<div>
-				<img className="object-cover h-[80vh]" src={img4} />
+				<img className="object-cover h-[80vh] rounded-md" src={img4} />
 			</div>
 			<div>
-				<img className="object-cover h-[80vh]" src={img5} />
+				<img className="object-cover h-[80vh] rounded-md" src={img5} />
 			</div>
 			<div>
-				<img className="object-cover h-[80vh]" src={img6} />
+				<img className="object-cover h-[80vh] rounded-md" src={img6} />
 			</div>
 		</Carousel>
 	);

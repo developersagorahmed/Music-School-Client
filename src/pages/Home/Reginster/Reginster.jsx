@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import ani from "../../../assets/registerpage.json";
@@ -14,6 +14,7 @@ const Reginster = () => {
 		handleGoogleSignIn,
 		setLoading,
 	} = useContext(AuthContext);
+	const navigate = useNavigate();
 	const [error, setError] = useState("");
 	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
@@ -36,14 +37,29 @@ const Reginster = () => {
 				updateUserProfile(name, photo)
 					.then(() => {
 						setError("");
-						Swal.fire({
-							position: "top-center",
-							icon: "success",
-							title: "Successfully Registered",
-							showConfirmButton: false,
-							timer: 1500,
-						});
-						event.target.reset();
+						const saveUser = { name: name, email: email };
+						fetch("http://localhost:5000/users", {
+							method: "POST",
+							headers: {
+								"content-type": "application/json",
+							},
+							body: JSON.stringify(saveUser),
+						})
+							.then((res) => res.json())
+							.then((data) => {
+								if (data.insertedId) {
+									event.target.reset();
+									Swal.fire({
+										position: "top-center",
+										icon: "success",
+										title: "Successfully Registered",
+										showConfirmButton: false,
+										timer: 1500,
+									});
+
+									navigate("/");
+								}
+							});
 					})
 					.catch((error) => {
 						setLoading(false);
@@ -72,21 +88,39 @@ const Reginster = () => {
 	const handleGoogle = () => {
 		handleGoogleSignIn()
 			.then((result) => {
-				const user = result.user;
-				Swal.fire({
-					position: "top-center",
-					icon: "success",
-					title: "Successfully Registered",
-					showConfirmButton: false,
-					timer: 1500,
-				});
+				const loggedInUser = result.user;
+				const saveUser = {
+					name: loggedInUser.displayName,
+					email: loggedInUser.email,
+				};
+
+				fetch("http://localhost:5000/users", {
+					method: "POST",
+					headers: {
+						"content-type": "application/json",
+					},
+					body: JSON.stringify(saveUser),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						Swal.fire({
+							position: "top-center",
+							icon: "success",
+							title: "Success to Registered",
+							showConfirmButton: false,
+							timer: 1500,
+						});
+
+						navigate("/");
+						// }
+					});
 			})
 			.catch((error) => setError(error.message));
 	};
 
 	return (
 		<div>
-			<h2 className="text-center text-3xl font-bold underline mt-16 text-[#3E2B26]">
+			<h2 className="text-center text-3xl font-bold underline pt-10 mt-[100px] text-[#E7B622]">
 				Register
 			</h2>
 			<div className="mt-16 flex justify-evenly my-4">
@@ -155,13 +189,15 @@ const Reginster = () => {
 					</form>
 					<span className=" text-base label-text-alt link link-hover">
 						<Link className=" text-blue" to="/login">
-							<p>
+							<p className="text-[#fff]">
 								Already have an Account
 								<span className="text-blue font-semibold underline">Login</span>
 							</p>
 						</Link>
 					</span>
-					<span>________________ or __________________</span>
+					<span className="text-[#fff]">
+						________________ or __________________
+					</span>
 					<button
 						onClick={handleGoogle}
 						className="mt-6 flex bg-base-200 px-4 py-2 w-full rounded-sm hover:bg-black hover:text-white transition duration-700"
