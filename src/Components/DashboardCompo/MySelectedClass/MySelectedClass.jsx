@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SelectedCart from "./SelectedCart";
+import { AuthContext } from "../../AuthProvider";
 
 const MySelectedClass = () => {
+	const { user } = useContext(AuthContext);
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch("http://localhost:5000/mySelectedClass")
+		fetch(`http://localhost:5000/mySelectedClass/${user.email}`)
 			.then((res) => res.json())
 			.then((dat) => setData(dat));
 	}, []);

@@ -9,6 +9,8 @@ import PrivateRoute from "../Components/PrivateRoute";
 import MySelectedClass from "../Components/DashboardCompo/MySelectedClass/MySelectedClass";
 import MyEnrolledClass from "../Components/DashboardCompo/MyEnrolledClass/MyEnrolledClass";
 import Payment from "../Components/DashboardCompo/Payment/Payment";
+import AddaClass from "../Components/DashboardCompo/AddaClass/AddaClass";
+import MyClasses from "../Components/DashboardCompo/AddaClass/MyClasses/MyClasses";
 
 export const router = createBrowserRouter([
 	{
@@ -31,7 +33,7 @@ export const router = createBrowserRouter([
 		],
 	},
 	{
-		path: "/dashboard/",
+		path: "/dashboard",
 		errorElement: <Error></Error>,
 		element: (
 			<PrivateRoute>
@@ -50,6 +52,14 @@ export const router = createBrowserRouter([
 			{
 				path: "payment",
 				element: <Payment></Payment>,
+			},
+			{
+				path: "addaclass",
+				element: <AddaClass></AddaClass>,
+			},
+			{
+				path: "myClasses",
+				element: <MyClasses></MyClasses>,
 			},
 		],
 	},

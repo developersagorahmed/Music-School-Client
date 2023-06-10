@@ -56,10 +56,10 @@ const SelectedCart = ({ item, setData, data }) => {
 				</td>
 				<td className=" font-semibold text-lg">{dat.price}$</td>
 				<td className="font-semibold text-lg">
-					<Link to={"/payment"}>
-						<button className="btn bg-[#EB1A1A] text-white hover:text-black">
+					<Link to="/dashboard/payment">
+						<span className="btn bg-[#EB1A1A] text-white hover:text-black">
 							Pay
-						</button>
+						</span>
 					</Link>
 				</td>
 				<td className="font-semibold text- text-lg">

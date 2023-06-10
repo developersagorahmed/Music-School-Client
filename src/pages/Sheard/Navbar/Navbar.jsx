@@ -1,15 +1,31 @@
 import React, { useContext } from "react";
 import css from "../Navbar/navbar.css";
 import icon from "../../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiLogIn, BiUser, BiLogOut } from "react-icons/bi";
 
 import { AuthContext } from "../../../Components/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
 	const { user, logOut } = useContext(AuthContext);
+	const navigate = useNavigate();
 	const logoutBtn = () => {
-		logOut().then();
+		Swal.fire({
+			title: "Are you sure You won't to Logout?",
+			text: "You won't to Logout",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, Logout",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				logOut().then();
+				navigate("/");
+				Swal.fire("Logout", "You has been Logout.", "success");
+			}
+		});
 	};
 
 	return (

@@ -35,6 +35,7 @@ const Login = () => {
 					timer: 1500,
 				});
 				event.target.reset();
+				navigate(from, { replace: true });
 			})
 			.catch((error) => {
 				console.log(error);

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
@@ -7,9 +7,19 @@ import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
 import { AuthContext } from "../AuthProvider";
 const Sidebar = () => {
+	const [userData, setUserData] = useState([]);
 	const navigate = useNavigate();
 	const { user, logOut } = useContext(AuthContext);
 	const [isActive, setActive] = useState("true");
+	console.log(userData);
+	useEffect(() => {
+		fetch(`http://localhost:5000/dashboard/${user?.email}`)
+			.then((res) => res.json())
+			.then((data) => {
+				setUserData(data);
+			})
+			.catch((err) => console.log(err));
+	}, []);
 
 	const handleLogOut = () => {
 		logOut().then().then();
@@ -61,16 +71,39 @@ const Sidebar = () => {
 
 					{/* Nav Items */}
 					<div className="flex flex-col justify-between flex-1 mt-6">
-						<Link to="/dashboard/mySelectedClass">
-							<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
-								My Selected Classes
-							</button>
-						</Link>
-						<Link to="/dashboard/myEnrolledClass">
-							<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
-								My Enrolled Classes
-							</button>
-						</Link>
+						{userData.role == "" && (
+							<>
+								<Link to="/dashboard/mySelectedClass">
+									<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
+										My Selected Classes
+									</button>
+								</Link>
+								<Link to="/dashboard/myEnrolledClass">
+									<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
+										My Enrolled Classes
+									</button>
+								</Link>
+							</>
+						)}
+						{userData.role == "ins" && (
+							<>
+								<Link to="/dashboard/addaclass">
+									<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
+										Add a Class
+									</button>
+								</Link>
+								<Link to="/dashboard/myClasses">
+									<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
+										My Classes
+									</button>
+								</Link>
+							</>
+						)}
+						{userData.role == "admin" && (
+							<>
+								<h1>This is admin section</h1>
+							</>
+						)}
 					</div>
 				</div>
 

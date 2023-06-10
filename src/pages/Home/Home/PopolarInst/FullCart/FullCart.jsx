@@ -20,11 +20,11 @@ const FullCart = ({ dat }) => {
 
 	const buyData = {
 		name: classname,
+		userEmail: user?.email,
 		dat,
 		user: {
 			userName: user?.displayName,
 			userImg: user?.photoURL,
-			userEmail: user?.email,
 		},
 	};
 
