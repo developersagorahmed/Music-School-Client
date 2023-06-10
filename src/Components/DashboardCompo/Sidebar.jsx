@@ -11,7 +11,7 @@ const Sidebar = () => {
 	const navigate = useNavigate();
 	const { user, logOut } = useContext(AuthContext);
 	const [isActive, setActive] = useState("true");
-	console.log(userData);
+
 	useEffect(() => {
 		fetch(`http://localhost:5000/dashboard/${user?.email}`)
 			.then((res) => res.json())
