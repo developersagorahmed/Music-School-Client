@@ -66,7 +66,7 @@ const FullCart = ({ dat }) => {
 	};
 
 	return (
-		<div className="card lg:card-side bg-base-100 my-6 lg:h-[370px] shadow-xl">
+		<div className="card lg:card-side bg-base-100 my-6 lg:h-[400px] shadow-xl">
 			<figure>
 				<img src={image} alt="Album" />
 			</figure>
@@ -90,7 +90,7 @@ const FullCart = ({ dat }) => {
 						Price :<div className="badge">{price}$</div>
 					</button>
 				</div>
-				<div className="card-actions justify-end  mt-4">
+				<div className="card-actions justify-end">
 					<button
 						onClick={buyBtn}
 						className="btn text-base bg-[#E7B622] font-bold"

@@ -37,7 +37,12 @@ const Reginster = () => {
 				updateUserProfile(name, photo)
 					.then(() => {
 						setError("");
-						const saveUser = { name: name, email: email, role: "" };
+						const saveUser = {
+							name: name,
+							email: email,
+							role: "",
+							photos: photo,
+						};
 						fetch("http://localhost:5000/users", {
 							method: "POST",
 							headers: {
@@ -92,7 +97,8 @@ const Reginster = () => {
 				const saveUser = {
 					name: loggedInUser.displayName,
 					email: loggedInUser.email,
-					role:""
+					role: "",
+					photos: photo,
 				};
 
 				fetch("http://localhost:5000/users", {

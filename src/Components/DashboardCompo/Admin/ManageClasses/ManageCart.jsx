@@ -1,7 +1,8 @@
-import React from "react";
+import { data } from "autoprefixer";
+import React, { useState } from "react";
 
 const ManageCart = ({ item }) => {
-	console.log(item);
+	// console.log(item);
 	const {
 		approved,
 		available_seats,
@@ -13,6 +14,30 @@ const ManageCart = ({ item }) => {
 		students,
 		_id,
 	} = item;
+	// const [status, setStatus] = useState("");
+	// console.log(status);
+	const newData = {
+		approved: approved,
+		available_seats: available_seats,
+		classname: classname,
+		dur: dur,
+	};
+	const handleStatus = (para) => {
+		// const stat = { option: option };
+		fetch(`http://localhost:5000/dashboard/myClassesa`, {
+			method: "PUT",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(newData),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<>
 			<tbody>
@@ -27,17 +52,17 @@ const ManageCart = ({ item }) => {
 						</div>
 					</td>
 					<td className="font-semibold text-lg">{classname}</td>
-					<td>
+					<td className="font-semibold text-lg">
 						{instructor?.name}
 						<br />
-						<span className="badge badge-ghost badge-sm">
+						<span className="badge badge-ghost badge-md font-semibold text-lg mt-3 p-3">
 							{instructor?.email}
 						</span>
 					</td>
 
 					<td className=" font-semibold text-lg">{available_seats}</td>
 					<td className="font-semibold text-lg">{students}</td>
-					<td className="font-semibold text- text-lg">{price}</td>
+					<td className="font-semibold text- text-lg">{price}$</td>
 					<td className="font-semibold text- text-lg">
 						{approved == "app" && "Approved"}
 						{approved == "rej" && "rej"}
@@ -45,15 +70,36 @@ const ManageCart = ({ item }) => {
 					</td>
 					<td className="font-semibold text- text-lg">
 						<div className="flex flex-col">
-							<span className="btn bg-green-600 text-white hover:bg-black">
+							<button
+								onClick={() => handleStatus("app")}
+								className={
+									approved !== "app"
+										? "btn  bg-green-600 text-white hover:bg-black"
+										: "btn btn-disabled"
+								}
+							>
 								Approved
-							</span>
-							<span className="btn bg-yellow-400 text-white hover:bg-black">
+							</button>
+							<button
+								onClick={() => handleStatus("rej")}
+								className={
+									approved !== "app"
+										? "btn bg-yellow-400 text-white hover:bg-black"
+										: "btn disabled"
+								}
+							>
 								pending
-							</span>
-							<span className="btn bg-[#EB1A1A] text-white hover:bg-black">
+							</button>
+							<button
+								onClick={() => handleStatus("den")}
+								className={
+									approved !== "app"
+										? "btn bg-[#EB1A1A] text-white hover:bg-black"
+										: "btn disabled"
+								}
+							>
 								Deny
-							</span>
+							</button>
 						</div>
 					</td>
 				</tr>

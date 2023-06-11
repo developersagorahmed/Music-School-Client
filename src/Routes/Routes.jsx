@@ -13,6 +13,8 @@ import AddaClass from "../Components/DashboardCompo/AddaClass/AddaClass";
 import MyClasses from "../Components/DashboardCompo/AddaClass/MyClasses/MyClasses";
 import EditClass from "../Components/DashboardCompo/EditClass/EditClass";
 import ManageClasses from "../Components/DashboardCompo/Admin/ManageClasses/ManageClasses";
+import Instractor from "../Components/Instractor/Instractor";
+import Classes from "../Components/Classes/Classes";
 
 export const router = createBrowserRouter([
 	{
@@ -31,6 +33,14 @@ export const router = createBrowserRouter([
 			{
 				path: "/register",
 				element: <Reginster></Reginster>,
+			},
+			{
+				path: "/Instructors",
+				element: <Instractor></Instractor>,
+			},
+			{
+				path: "/classes",
+				element: <Classes></Classes>,
 			},
 		],
 	},
