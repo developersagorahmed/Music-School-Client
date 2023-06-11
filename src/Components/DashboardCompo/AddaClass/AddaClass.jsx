@@ -1,10 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider";
 const img_host_token = import.meta.env.VITE_IMAGE_UPLODE_TOKEN;
-const img_host_URL = `https://api.imgbb.com/1/upload?expiration=600&key=${img_host_token}`;
+const img_host_URL = `https://api.imgbb.com/1/upload?key=${img_host_token}`;
 
 const AddaClass = () => {
 	const { user } = useContext(AuthContext);
+
+	const [classname, setClassname] = useState("");
+	const [available_seats, setAvailable_seats] = useState("");
+	const [students, setStudents] = useState("");
+	const [price, setPrice] = useState("");
+	const [dur, setDur] = useState("");
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -16,8 +22,39 @@ const AddaClass = () => {
 			method: "POST",
 			body: formData,
 		})
-			.then((res) => res.json())
-			.then((imgRes) => console.log(imgRes));
+			.then(async (res) => await res.json())
+			.then((imgRes) => {
+				if (imgRes.success) {
+					const imgData = imgRes.data.display_url;
+
+					const newData = {
+						image: imgData,
+						classname: classname,
+						email: user?.email,
+						instructor: {
+							email: user?.email,
+							name: user?.displayName,
+							image: user?.photoURL,
+						},
+						available_seats: parseInt(available_seats),
+						students: parseInt(students),
+						price: parseInt(price),
+						dur: parseInt(dur),
+						approved: "app",
+					};
+					fetch("http://localhost:5000/addAClass", {
+						method: "POST",
+						headers: {
+							"content-type": "application/json",
+						},
+						body: JSON.stringify(newData),
+					})
+						.then((res) => res.json())
+						.then((data) => console.log(data))
+						.catch((err) => console.log(err));
+				}
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -32,6 +69,7 @@ const AddaClass = () => {
 							<div className="label-text text-lg font-semibold">Class Name</div>
 
 							<input
+								onChange={(e) => setClassname(e.target.value)}
 								type="text"
 								placeholder="Class Name"
 								className="input input-bordered input-primary w-full max-w-xs"
@@ -72,6 +110,7 @@ const AddaClass = () => {
 							</div>
 
 							<input
+								onChange={(e) => setAvailable_seats(e.target.value)}
 								type="number"
 								placeholder="Total set"
 								className="input input-bordered input-primary w-full max-w-xs"
@@ -86,6 +125,7 @@ const AddaClass = () => {
 							</div>
 
 							<input
+								onChange={(e) => setStudents(e.target.value)}
 								type="number"
 								placeholder="Total Enrolled Students"
 								className="input input-bordered input-primary w-full max-w-xs"
@@ -97,6 +137,7 @@ const AddaClass = () => {
 								Course Durations
 							</div>
 							<input
+								onChange={(e) => setDur(e.target.value)}
 								type="number"
 								placeholder="Course Durations"
 								className="input input-bordered input-primary w-full max-w-xs"
@@ -121,6 +162,7 @@ const AddaClass = () => {
 								Course Price
 							</div>
 							<input
+								onChange={(e) => setPrice(e.target.value)}
 								type="number"
 								placeholder="Course Price"
 								className="input input-bordered input-primary w-full max-w-xs"

@@ -11,6 +11,8 @@ import MyEnrolledClass from "../Components/DashboardCompo/MyEnrolledClass/MyEnro
 import Payment from "../Components/DashboardCompo/Payment/Payment";
 import AddaClass from "../Components/DashboardCompo/AddaClass/AddaClass";
 import MyClasses from "../Components/DashboardCompo/AddaClass/MyClasses/MyClasses";
+import EditClass from "../Components/DashboardCompo/EditClass/EditClass";
+import ManageClasses from "../Components/DashboardCompo/Admin/ManageClasses/ManageClasses";
 
 export const router = createBrowserRouter([
 	{
@@ -60,6 +62,18 @@ export const router = createBrowserRouter([
 			{
 				path: "myClasses",
 				element: <MyClasses></MyClasses>,
+			},
+			{
+				path: "myClasses/editClass/:id",
+				element: <EditClass></EditClass>,
+				loader: ({ params }) =>
+					fetch(
+						`http://localhost:5000/dashboard/myClasses/editClass/${params.id}`
+					),
+			},
+			{
+				path: "manageClasses",
+				element: <ManageClasses></ManageClasses>,
 			},
 		],
 	},
