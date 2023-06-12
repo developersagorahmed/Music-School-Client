@@ -23,6 +23,7 @@ const Navbar = () => {
 			if (result.isConfirmed) {
 				logOut().then();
 				navigate("/");
+				localStorage.removeItem("access-token");
 				Swal.fire("Logout", "You has been Logout.", "success");
 			}
 		});

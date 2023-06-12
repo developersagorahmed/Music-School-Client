@@ -6,7 +6,11 @@ const MySelectedClass = () => {
 	const { user } = useContext(AuthContext);
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch(`http://localhost:5000/mySelectedClass/${user.email}`)
+		fetch(`http://localhost:5000/mySelectedClass/${user.email}`, {
+			headers: {
+				authorization: `Bearer ${localStorage.getItem("access-token")}`,
+			},
+		})
 			.then((res) => res.json())
 			.then((dat) => setData(dat));
 	}, []);

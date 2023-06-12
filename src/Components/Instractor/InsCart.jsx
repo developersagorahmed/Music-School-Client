@@ -14,9 +14,6 @@ const InsCart = ({ item }) => {
 				<p className="text-white text-lg font-semibold">
 					Instructor Email : {item?.email}
 				</p>
-				<div className="card-actions justify-end">
-					<button className="btn btn-primary  text-white">Learn now!</button>
-				</div>
 			</div>
 		</div>
 	);
