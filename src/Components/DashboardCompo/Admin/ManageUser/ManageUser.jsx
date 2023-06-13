@@ -7,7 +7,7 @@ const ManageUser = () => {
 		fetch("http://localhost:5000/allUser")
 			.then((res) => res.json())
 			.then((data) => setUser(data));
-	}, []);
+	}, [user]);
 	return (
 		<div>
 			<h2 className=" text-center  mt-10 text-3xl font-bold underline mb-10 text-[#E7B622]">
@@ -27,7 +27,11 @@ const ManageUser = () => {
 						</tr>
 					</thead>
 					{user?.map((users) => (
-						<ManageUserCard key={users?._id} item={users}></ManageUserCard>
+						<ManageUserCard
+							key={users?._id}
+							setUser={setUser}
+							item={users}
+						></ManageUserCard>
 					))}
 				</table>
 			</div>

@@ -17,6 +17,16 @@ const MyClassCart = ({ item }) => {
 		_id,
 	} = item;
 
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
+
 	return (
 		<>
 			<tbody>
@@ -50,8 +60,46 @@ const MyClassCart = ({ item }) => {
 							</button>
 						</Link>
 					</td>
+					<td className="font-semibold text- text-lg">
+						{item?.feedback && (
+							<>
+								<button
+									onClick={openModal}
+									className="btn bg-slate-200 hover:bg-red-700 hover:text-white"
+								>
+									{item?.feedback ? item.feedback.slice(0, 10) + "..." : ""}
+								</button>
+							</>
+						)}
+					</td>
 				</tr>
 			</tbody>
+			{/* You can open the modal using ID.showModal() method */}
+
+			{isModalOpen && (
+				<div className="fixed z-10 inset-0 overflow-y-auto">
+					<div className="flex  items-center justify-center min-h-screen px-4">
+						<div className="fixed inset-0 transition-opacity">
+							<div className="absolute inset-0 bg-black opacity-50"></div>
+						</div>
+
+						<div className="bg-white p-6 rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+							<div className="px-4 py-6">
+								<div className="flex items-center justify-between">
+									<h3 className="font-bold text-lg">Your FeedBack</h3>
+									<button
+										className="btn w-7 h-7 btn-sm btn-circle btn-ghost"
+										onClick={closeModal}
+									>
+										✕
+									</button>
+								</div>
+								<p className="py-4">{item?.feedback}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
 		</>
 	);
 };

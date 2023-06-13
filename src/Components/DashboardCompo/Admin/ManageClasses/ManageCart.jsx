@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 const ManageCart = ({ item }) => {
 	// console.log(item);
+	console.log(item);
 	const {
 		approved,
 		available_seats,

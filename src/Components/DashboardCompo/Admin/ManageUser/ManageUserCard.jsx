@@ -24,7 +24,7 @@ const ManageUserCard = ({ item }) => {
 						showConfirmButton: false,
 						timer: 1500,
 					});
-					navigate("/dashboard/myClasses");
+				
 				}
 			})
 			.catch((err) => console.log(err));

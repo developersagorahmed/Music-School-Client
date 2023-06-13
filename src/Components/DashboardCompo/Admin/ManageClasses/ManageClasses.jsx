@@ -7,7 +7,7 @@ const ManageClasses = () => {
 		fetch("http://localhost:5000/manageClasses")
 			.then((res) => res.json())
 			.then((dat) => setData(dat));
-	}, []);
+	}, [data]);
 
 	return (
 		<div>
