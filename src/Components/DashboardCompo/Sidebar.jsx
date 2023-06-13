@@ -44,9 +44,11 @@ const Sidebar = () => {
 				<div>
 					{/* Branding & Profile Info */}
 					<div>
-						<div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
-							<img src={Logo} alt="" />
-						</div>
+						<Link to="/dashboard">
+							<div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
+								<img src={Logo} alt="" />
+							</div>
+						</Link>
 						<div className="flex flex-col items-center mt-6 -mx-2">
 							<Link to="/dashboard">
 								<img
@@ -78,7 +80,7 @@ const Sidebar = () => {
 										My Selected Classes
 									</button>
 								</Link>
-								<Link to="/dashboard/myEnrolledClass">
+								<Link to={`/dashboard/myEnrolledClass/:${user?.email}`}>
 									<button className="flex w-full items-center px-4 py-2 mt-5 text-white bg-[rgb(86,69,121)]  hover:bg-[#E9C044]   hover:text-black font-bold text-lg rounded-md transition-colors duration-300 transform">
 										My Enrolled Classes
 									</button>

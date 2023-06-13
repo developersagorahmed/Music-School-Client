@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider";
+import Swal from "sweetalert2";
 const img_host_token = import.meta.env.VITE_IMAGE_UPLODE_TOKEN;
 const img_host_URL = `https://api.imgbb.com/1/upload?key=${img_host_token}`;
 
@@ -40,7 +41,7 @@ const AddaClass = () => {
 						students: parseInt(students),
 						price: parseInt(price),
 						dur: parseInt(dur),
-						approved: "app",
+						approved: "pan",
 					};
 					fetch("http://localhost:5000/addAClass", {
 						method: "POST",
@@ -50,7 +51,18 @@ const AddaClass = () => {
 						body: JSON.stringify(newData),
 					})
 						.then((res) => res.json())
-						.then((data) => console.log(data))
+						.then((data) => {
+							if (data.acknowledged == true) {
+								Swal.fire({
+									position: "top-center",
+									icon: "success",
+									title: "Payment SuccessFull",
+									showConfirmButton: false,
+									timer: 1500,
+								});
+							}
+							console.log(data);
+						})
 						.catch((err) => console.log(err));
 				}
 			})

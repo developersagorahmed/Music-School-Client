@@ -15,7 +15,6 @@ const MySelectedClass = () => {
 			.then((dat) => setData(dat));
 	}, []);
 
-	console.log(data);
 	return (
 		<div>
 			<h2 className="text-center text-3xl font-bold underline pt-6  text-[#E7B622]">

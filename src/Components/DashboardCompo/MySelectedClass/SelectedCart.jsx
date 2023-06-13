@@ -1,12 +1,14 @@
 import React from "react";
-
+import { useState } from "react";
 import { ImBin2 } from "react-icons/im";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
+import { Dialog } from "@headlessui/react";
+
 const SelectedCart = ({ item, setData, data }) => {
 	const datas = data;
-	console.log(item);
+
 	const { dat } = item;
 	const deleteItem = (_id) => {
 		Swal.fire({
@@ -38,37 +40,41 @@ const SelectedCart = ({ item, setData, data }) => {
 	};
 
 	return (
-		<tbody>
-			<tr>
-				<td>
-					<div className="flex items-center space-x-3">
-						<div className="avatar">
-							<div className="mask mask-squircle w-12 h-12">
-								<img src={dat?.image} alt="Avatar Tailwind CSS Component" />
+		<>
+			<tbody>
+				<tr>
+					<td>
+						<div className="flex items-center space-x-3">
+							<div className="avatar">
+								<div className="mask mask-squircle w-12 h-12">
+									<img src={dat?.image} alt="Avatar Tailwind CSS Component" />
+								</div>
 							</div>
 						</div>
-					</div>
-				</td>
-				<td className="font-semibold text-lg">{dat?.classname}</td>
-				<td className="font-semibold text-lg">{dat?.instructor?.name}</td>
-				<td className="flex justify-center mt-2 font-semibold text-lg">
-					{dat?.students}
-				</td>
-				<td className=" font-semibold text-lg">{dat?.price}$</td>
-				<td className="font-semibold text-lg">
-					<Link to="/dashboard/payment">
-						<span className="btn bg-[#EB1A1A] text-white hover:text-black">
-							Pay
-						</span>
-					</Link>
-				</td>
-				<td className="font-semibold text- text-lg">
-					<button onClick={() => deleteItem(item?._id)}>
-						<ImBin2 className="w-10 h-10 ml-2 text-red-700 hover:text-[#E7B622] duration-300"></ImBin2>
-					</button>
-				</td>
-			</tr>
-		</tbody>
+					</td>
+					<td className="font-semibold text-lg">{dat?.classname}</td>
+					<td className="font-semibold text-lg">{dat?.instructor?.name}</td>
+					<td className="flex justify-center mt-2 font-semibold text-lg">
+						{dat?.students}
+					</td>
+					<td className=" font-semibold text-lg">{dat?.price}$</td>
+					<td className="font-semibold text-lg">
+						<Link to={`/dashboard/payment/${dat?._id}`}>
+							<button className="btn bg-[#EB1A1A] text-white hover:text-black">
+								Pay
+							</button>
+						</Link>
+					</td>
+					<td className="font-semibold text- text-lg">
+						<button onClick={() => deleteItem(item?._id)}>
+							<ImBin2 className="w-10 h-10 ml-2 text-red-700 hover:text-[#E7B622] duration-300"></ImBin2>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+
+			{/* Open the modal using ID.showModal() method */}
+		</>
 	);
 };
 

@@ -1,5 +1,7 @@
 import { data } from "autoprefixer";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageCart = ({ item }) => {
 	// console.log(item);
@@ -16,26 +18,56 @@ const ManageCart = ({ item }) => {
 	} = item;
 	// const [status, setStatus] = useState("");
 	// console.log(status);
-	const newData = {
-		approved: approved,
-		available_seats: available_seats,
-		classname: classname,
-		dur: dur,
-	};
+
 	const handleStatus = (para) => {
-		// const stat = { option: option };
-		fetch(`http://localhost:5000/dashboard/myClassesa`, {
+		const approved = para;
+		const updateData = {
+			image: image,
+			classname: classname,
+			students: students,
+			price: price,
+			approved: approved,
+			available_seats: available_seats,
+			dur: dur,
+		};
+
+		console.log(approved);
+
+		fetch(`http://localhost:5000/dashboard/myClasses/${_id}`, {
 			method: "PUT",
 			headers: {
 				"content-type": "application/json",
 			},
-			body: JSON.stringify(newData),
+			body: JSON.stringify(updateData),
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
+				if (data.modifiedCount > 0) {
+					Swal.fire({
+						position: "top-center",
+						icon: "success",
+						title: "Successfully Login",
+						showConfirmButton: false,
+						timer: 1500,
+					});
+				}
 			})
 			.catch((err) => console.log(err));
+
+		// const stat = { option: option };
+		// fetch(`http://localhost:5000/status/${_id}`, {
+		// 	method: "PUT",
+		// 	headers: {
+		// 		"content-type": "application/json",
+		// 	},
+		// 	body: JSON.stringify({ newData }),
+		// })
+		// 	.then((res) => res.json())
+		// 	.then((data) => {
+		// 		console.log(data);
+		// 	})
+		// 	.catch((err) => console.log(err));
 	};
 
 	return (
@@ -65,8 +97,8 @@ const ManageCart = ({ item }) => {
 					<td className="font-semibold text- text-lg">{price}$</td>
 					<td className="font-semibold text- text-lg">
 						{approved == "app" && "Approved"}
-						{approved == "rej" && "rej"}
-						{approved == "pan" && "Approved"}
+						{approved == "rej" && "reject"}
+						{approved == "pan" && "pening"}
 					</td>
 					<td className="font-semibold text- text-lg">
 						<div className="flex flex-col">
@@ -80,16 +112,7 @@ const ManageCart = ({ item }) => {
 							>
 								Approved
 							</button>
-							<button
-								onClick={() => handleStatus("rej")}
-								className={
-									approved !== "app"
-										? "btn bg-yellow-400 text-white hover:bg-black"
-										: "btn disabled"
-								}
-							>
-								pending
-							</button>
+
 							<button
 								onClick={() => handleStatus("den")}
 								className={
@@ -100,6 +123,12 @@ const ManageCart = ({ item }) => {
 							>
 								Deny
 							</button>
+							<Link
+								to={`/dashboard/feedback/${_id}`}
+								className={"btn bg-yellow-400 text-white hover:bg-black"}
+							>
+								FeedBack
+							</Link>
 						</div>
 					</td>
 				</tr>

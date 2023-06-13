@@ -93,7 +93,7 @@ const FullCart = ({ dat }) => {
 				<div className="card-actions justify-end">
 					<button
 						onClick={buyBtn}
-						className="btn text-base bg-[#E7B622] font-bold"
+						className="btn text-base bg-[#85CE85] font-bold"
 					>
 						Purchase
 					</button>

@@ -15,6 +15,8 @@ import EditClass from "../Components/DashboardCompo/EditClass/EditClass";
 import ManageClasses from "../Components/DashboardCompo/Admin/ManageClasses/ManageClasses";
 import Instractor from "../Components/Instractor/Instractor";
 import Classes from "../Components/Classes/Classes";
+import MainDash from "../Layout/MainDash";
+import Feedack from "../Components/DashboardCompo/Admin/ManageClasses/Feedack";
 
 export const router = createBrowserRouter([
 	{
@@ -54,15 +56,19 @@ export const router = createBrowserRouter([
 		),
 		children: [
 			{
+				path: "/dashboard",
+				element: <MainDash></MainDash>,
+			},
+			{
 				path: "mySelectedClass",
 				element: <MySelectedClass></MySelectedClass>,
 			},
 			{
-				path: "myEnrolledClass",
+				path: "myEnrolledClass/:email",
 				element: <MyEnrolledClass></MyEnrolledClass>,
 			},
 			{
-				path: "payment",
+				path: "payment/:id",
 				element: <Payment></Payment>,
 			},
 			{
@@ -84,6 +90,12 @@ export const router = createBrowserRouter([
 			{
 				path: "manageClasses",
 				element: <ManageClasses></ManageClasses>,
+			},
+			{
+				path: "/dashboard/feedback/:id",
+				element: <Feedack></Feedack>,
+				loader: ({ params }) =>
+					fetch(`http://localhost:5000/feedback/${params.id}`),
 			},
 		],
 	},
