@@ -17,6 +17,7 @@ import Instractor from "../Components/Instractor/Instractor";
 import Classes from "../Components/Classes/Classes";
 import MainDash from "../Layout/MainDash";
 import Feedack from "../Components/DashboardCompo/Admin/ManageClasses/Feedack";
+import ManageUser from "../Components/DashboardCompo/Admin/ManageUser/ManageUser";
 
 export const router = createBrowserRouter([
 	{
@@ -94,8 +95,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/dashboard/feedback/:id",
 				element: <Feedack></Feedack>,
-				loader: ({ params }) =>
-					fetch(`http://localhost:5000/feedback/${params.id}`),
+			},
+			{
+				path: "manageUser",
+				element: <ManageUser></ManageUser>,
 			},
 		],
 	},
