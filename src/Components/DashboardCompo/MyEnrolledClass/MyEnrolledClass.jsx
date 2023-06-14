@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider";
 import EnrollCard from "./EnrollCard";
+import { Helmet } from "react-helmet";
 
 const MyEnrolledClass = () => {
 	const { user } = useContext(AuthContext);
@@ -14,6 +15,9 @@ const MyEnrolledClass = () => {
 	}, []);
 	return (
 		<div>
+			<Helmet>
+				<title>My Enrolled Classes</title>
+			</Helmet>
 			<h2 className="text-center text-3xl font-bold underline pt-6  text-[#E7B622]">
 				My Selected Classes
 			</h2>

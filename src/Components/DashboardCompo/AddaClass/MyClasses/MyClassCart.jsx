@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider";
-import Swal from "sweetalert2";
+
 
 const MyClassCart = ({ item }) => {
 	const { user } = useContext(AuthContext);

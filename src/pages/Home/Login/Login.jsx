@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Components/AuthProvider";
 import ani from "../../../assets/loginPage.json";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -75,6 +76,9 @@ const Login = () => {
 
 	return (
 		<>
+			<Helmet>
+				<title>Login</title>
+			</Helmet>
 			<h2 className="text-center text-4xl font-bold underline mt-[100px] pt-10 text-[#E7B622]">
 				Log in
 			</h2>

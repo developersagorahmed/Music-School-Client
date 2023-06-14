@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -49,7 +50,7 @@ const EditClass = () => {
 					Swal.fire({
 						position: "top-center",
 						icon: "success",
-						title: "Successfully Login",
+						title: "Successfully Edit",
 						showConfirmButton: false,
 						timer: 1500,
 					});
@@ -62,6 +63,9 @@ const EditClass = () => {
 	};
 	return (
 		<div>
+			<Helmet>
+				<title>Edit Classes</title>
+			</Helmet>
 			<form onSubmit={handleUpdate}>
 				<div className="flex  justify-evenly ">
 					<div className="form-control w-full max-w-xs">
@@ -88,7 +92,7 @@ const EditClass = () => {
 						<input
 							onChange={(e) => setUpAblSet(e.target.value)}
 							// defaultValue={available_seats}
-							value={available_seats}
+							defaultValue={available_seats}
 							type="number"
 							placeholder="Total set"
 							className="input input-bordered input-primary w-full max-w-xs"

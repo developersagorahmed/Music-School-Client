@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvider";
 import MyClassCart from "./MyClassCart";
+import { Helmet } from "react-helmet";
 
 const MyClasses = () => {
 	const [data, setData] = useState([]);
@@ -17,6 +18,9 @@ const MyClasses = () => {
 	return (
 		<>
 			<div>
+				<Helmet>
+					<title>My Classes</title>
+				</Helmet>
 				<h2 className=" text-center  mt-10 text-3xl font-bold underline mb-10 text-[#E7B622]">
 					My classes
 				</h2>

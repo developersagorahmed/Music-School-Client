@@ -5,6 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { AuthContext } from "../../AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Payment = () => {
 	const navigate = useNavigate();
@@ -56,6 +57,9 @@ const Payment = () => {
 	};
 	return (
 		<>
+			<Helmet>
+				<title>Payment</title>
+			</Helmet>
 			<h2 className="text-center text-3xl font-bold underline pt-6  text-[#E7B622]">
 				Pay Here
 			</h2>

@@ -60,7 +60,7 @@ const FullCart = ({ dat }) => {
 					Swal.fire({
 						position: "top-center",
 						icon: "success",
-						title: "Class added Successfully",
+						title: "Class Added Successfully",
 						showConfirmButton: false,
 						timer: 1500,
 					});

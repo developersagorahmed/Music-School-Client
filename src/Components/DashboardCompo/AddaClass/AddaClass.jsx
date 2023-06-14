@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 const img_host_token = import.meta.env.VITE_IMAGE_UPLODE_TOKEN;
 const img_host_URL = `https://api.imgbb.com/1/upload?key=${img_host_token}`;
 
@@ -12,6 +14,7 @@ const AddaClass = () => {
 	const [students, setStudents] = useState("");
 	const [price, setPrice] = useState("");
 	const [dur, setDur] = useState("");
+	const navigate = useNavigate();
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -59,11 +62,12 @@ const AddaClass = () => {
 								Swal.fire({
 									position: "top-center",
 									icon: "success",
-									title: "Payment SuccessFull",
+									title: "Class added Successful",
 									showConfirmButton: false,
 									timer: 1500,
 								});
 							}
+							navigate("/dashboard/myClasses");
 							console.log(data);
 						})
 						.catch((err) => console.log(err));
@@ -74,6 +78,9 @@ const AddaClass = () => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Add a Class</title>
+			</Helmet>
 			<h2 className=" text-center  mt-10 text-3xl font-bold underline mb-10 text-[#E7B622]">
 				Add a Class
 			</h2>

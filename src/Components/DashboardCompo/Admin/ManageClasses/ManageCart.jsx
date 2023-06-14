@@ -1,5 +1,6 @@
 import { data } from "autoprefixer";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -76,6 +77,9 @@ const ManageCart = ({ item }) => {
 
 	return (
 		<>
+		<Helmet>
+				<title>Admin || Manage User</title>
+			</Helmet>
 			<tbody>
 				<tr>
 					<td>

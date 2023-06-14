@@ -6,6 +6,7 @@ import ani from "../../../assets/registerpage.json";
 import { AuthContext } from "../../../Components/AuthProvider";
 
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 const Reginster = () => {
 	const {
 		registerUser,
@@ -133,6 +134,9 @@ const Reginster = () => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Register</title>
+			</Helmet>
 			<h2 className="text-center text-3xl font-bold underline pt-10 mt-[100px] text-[#E7B622]">
 				Register
 			</h2>

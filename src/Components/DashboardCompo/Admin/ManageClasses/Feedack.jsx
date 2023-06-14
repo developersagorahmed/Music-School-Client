@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -45,7 +46,7 @@ const Feedack = () => {
 					Swal.fire({
 						position: "top-center",
 						icon: "success",
-						title: "Successfully Login",
+						title: "Successfully Send Feedback",
 						showConfirmButton: false,
 						timer: 1500,
 					});
@@ -58,6 +59,9 @@ const Feedack = () => {
 	};
 	return (
 		<div>
+			<Helmet>
+				<title>Feedback</title>
+			</Helmet>
 			<h2 className=" text-center  mt-10 text-3xl font-bold underline mb-10 text-[#E7B622]">
 				Add a FeedBack
 			</h2>

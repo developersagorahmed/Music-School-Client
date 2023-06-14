@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import SelectedCart from "./SelectedCart";
 import { AuthContext } from "../../AuthProvider";
+import { Helmet } from "react-helmet";
 
 const MySelectedClass = () => {
 	const { user } = useContext(AuthContext);
@@ -20,6 +21,9 @@ const MySelectedClass = () => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>My Selected Class</title>
+			</Helmet>
 			<h2 className="text-center text-3xl font-bold underline pt-6  text-[#E7B622]">
 				My Selected Classes
 			</h2>

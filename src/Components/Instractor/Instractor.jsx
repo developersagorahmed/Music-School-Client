@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InsCart from "./InsCart";
+import { Helmet } from "react-helmet";
 
 const Instractor = () => {
 	const [data, setData] = useState([]);
@@ -8,6 +9,9 @@ const Instractor = () => {
 		.then((data) => setData(data));
 	return (
 		<div>
+			<Helmet>
+				<title>Instructors</title>
+			</Helmet>
 			<h2 className="mt-20 pt-10 text-center text-3xl font-bold underline mb-10 text-[#E7B622]">
 				Our Instructors
 			</h2>

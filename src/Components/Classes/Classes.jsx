@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ClassCart from "./ClassCart";
+import { Helmet } from "react-helmet";
 
 const Classes = () => {
 	const [data, setData] = useState([]);
@@ -8,6 +9,9 @@ const Classes = () => {
 		.then((datas) => setData(datas));
 	return (
 		<devicePixelRatio>
+			<Helmet>
+				<title>Classes</title>
+			</Helmet>
 			<h2 className="mt-20 pt-10 text-center text-3xl font-bold underline mb-10 text-[#E7B622]">
 				Our Classes
 			</h2>

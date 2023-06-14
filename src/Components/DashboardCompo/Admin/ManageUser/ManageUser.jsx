@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ManageUserCard from "./ManageUserCard";
+import { Helmet } from "react-helmet";
 
 const ManageUser = () => {
 	const [user, setUser] = useState([]);
@@ -10,6 +11,9 @@ const ManageUser = () => {
 	}, [user]);
 	return (
 		<div>
+			<Helmet>
+				<title>Admin || Manage user</title>
+			</Helmet>
 			<h2 className=" text-center  mt-10 text-3xl font-bold underline mb-10 text-[#E7B622]">
 				Management User
 			</h2>
