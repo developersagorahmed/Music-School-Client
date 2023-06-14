@@ -1,11 +1,9 @@
 ## Live site link
 
-<img
-src="./src/assets/login.png"
-raw=true
-alt=“Subject Pronouns”
-style=“margin-right: 10px;”
-/>
+<p align="center">
+  
+  <img src="./src/assets/login.png" width="350" alt="accessibility text">
+</p>
 
 Clint here for Live site link [https://action-toys-assignment-11.web.app]
 
