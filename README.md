@@ -2,7 +2,7 @@
 
 <p align="center">
   
-  <img src="./src/assets/login.png" width="350" alt="accessibility text">
+  <img src="./src/assets/logo.png" width="350" alt="accessibility text">
 </p>
 
 Clint here for Live site link [https://action-toys-assignment-11.web.app]
