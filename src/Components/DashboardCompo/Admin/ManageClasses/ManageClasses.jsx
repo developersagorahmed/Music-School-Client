@@ -4,7 +4,9 @@ import ManageCart from "./ManageCart";
 const ManageClasses = () => {
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch("http://localhost:5000/manageClasses")
+		fetch(
+			"https://music-book-server-developersagorahmed.vercel.app/manageClasses"
+		)
 			.then((res) => res.json())
 			.then((dat) => setData(dat));
 	}, [data]);

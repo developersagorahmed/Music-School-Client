@@ -6,13 +6,16 @@ const ManageUserCard = ({ item }) => {
 	const { _id, email, name, role, photo } = item;
 
 	const handleRole = (role, _id) => {
-		fetch(`http://localhost:5000/role/update/${_id}`, {
-			method: "PUT",
-			headers: {
-				"content-type": "application/json",
-			},
-			body: JSON.stringify({ role, _id }),
-		})
+		fetch(
+			`https://music-book-server-developersagorahmed.vercel.app/role/update/${_id}`,
+			{
+				method: "PUT",
+				headers: {
+					"content-type": "application/json",
+				},
+				body: JSON.stringify({ role, _id }),
+			}
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
@@ -48,7 +51,7 @@ const ManageUserCard = ({ item }) => {
 						{role == "" && "Student"}
 						{role == "ins" && "Instructor"}
 						{role == "admin" && "Admin"}
-					</td>git
+					</td>
 					<td className=" font-semibold text-lg">
 						<button
 							disabled={role == "ins"}

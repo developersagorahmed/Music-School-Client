@@ -5,7 +5,7 @@
   <img src="./src/assets/logo.png" width="350" alt="accessibility text">
 </p>
 
-Clint here for Live site link [https://action-toys-assignment-11.web.app]
+Clint here for Live site link [https://music-book-website.web.app/]
 
 - it's a full stack project
 - if you not login then you can't show other info without home instructor and class

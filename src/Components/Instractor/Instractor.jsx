@@ -3,7 +3,7 @@ import InsCart from "./InsCart";
 
 const Instractor = () => {
 	const [data, setData] = useState([]);
-	fetch("http://localhost:5000/instructors")
+	fetch("https://music-book-server-developersagorahmed.vercel.app/instructors")
 		.then((res) => res.json())
 		.then((data) => setData(data));
 	return (

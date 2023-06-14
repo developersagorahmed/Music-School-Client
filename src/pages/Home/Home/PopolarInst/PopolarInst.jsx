@@ -4,7 +4,9 @@ import FullCart from "./FullCart/FullCart";
 const PopolarInst = () => {
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch("http://localhost:5000/topInstructorClass")
+		fetch(
+			"https://music-book-server-developersagorahmed.vercel.app/topInstructorClass"
+		)
 			.then((res) => res.json())
 			.then((allData) => setData(allData));
 	}, []);

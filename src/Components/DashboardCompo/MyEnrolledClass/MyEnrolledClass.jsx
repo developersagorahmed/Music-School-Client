@@ -6,7 +6,9 @@ const MyEnrolledClass = () => {
 	const { user } = useContext(AuthContext);
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch(`http://localhost:5000/myEnrolledClass/${user?.email}`)
+		fetch(
+			`https://music-book-server-developersagorahmed.vercel.app/myEnrolledClass/${user?.email}`
+		)
 			.then((res) => res.json())
 			.then((dat) => setData(dat));
 	}, []);

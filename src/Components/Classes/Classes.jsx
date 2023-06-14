@@ -3,7 +3,7 @@ import ClassCart from "./ClassCart";
 
 const Classes = () => {
 	const [data, setData] = useState([]);
-	fetch("http://localhost:5000/classes")
+	fetch("https://music-book-server-developersagorahmed.vercel.app/classes")
 		.then((res) => res.json())
 		.then((datas) => setData(datas));
 	return (

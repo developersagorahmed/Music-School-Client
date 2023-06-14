@@ -4,7 +4,7 @@ import Cart from "./Cart/Cart";
 const PopolarClass = () => {
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch("http://localhost:5000/classes")
+		fetch("https://music-book-server-developersagorahmed.vercel.app/classes")
 			.then((result) => result.json())
 			.then((data) => setData(data));
 	}, []);

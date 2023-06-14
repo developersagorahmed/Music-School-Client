@@ -4,7 +4,7 @@ import ManageUserCard from "./ManageUserCard";
 const ManageUser = () => {
 	const [user, setUser] = useState([]);
 	useEffect(() => {
-		fetch("http://localhost:5000/allUser")
+		fetch("https://music-book-server-developersagorahmed.vercel.app/allUser")
 			.then((res) => res.json())
 			.then((data) => setUser(data));
 	}, [user]);

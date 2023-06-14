@@ -181,11 +181,20 @@ const Navbar = ({ mode, setMode }) => {
 							<BiLogIn
 								className={`${
 									mode ? "text-black" : "text-white"
-								}"w-7 h-7 mt-[2px] text-2xl  mr-4"`}
+								}"w-7 h-7 mt-[2px] text-white text-2xl  mr-4"`}
 							></BiLogIn>{" "}
-							<span className="text-xl">Login</span>
+							<span
+								className={
+									mode
+										? "text-black text-xl hover:[#E7B622]"
+										: "text-white text-xl hover:[#E7B622]"
+								}
+							>
+								Login
+							</span>
 						</span>
 					</Link>
+					// "text-[#E7B622] text-xl "
 				)}
 				<label className="swap swap-rotate">
 					{/* this hidden checkbox controls the state */}
@@ -193,14 +202,14 @@ const Navbar = ({ mode, setMode }) => {
 					{/* sun icon */}
 					<BsSun
 						onClick={() => setMode(false)}
-						className=" swap-on w-9 ml-6 text-[#ffffff]  h-9 mt-2"
+						className=" swap-on w-9 ml-6 hover:text-[#E7B622] text-[#ffffff]  h-9 mt-2"
 					></BsSun>
 
 					{/* moon icon */}
 
 					<BsMoonFill
 						onClick={() => setMode(true)}
-						className="swap-off ml-6 fill-current w-9 h-9 mt-2"
+						className="swap-off text-black hover:text-[#E7B622] ml-6 fill-current w-9 h-9 mt-2"
 					></BsMoonFill>
 				</label>
 			</div>

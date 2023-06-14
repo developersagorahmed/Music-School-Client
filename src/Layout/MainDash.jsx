@@ -13,7 +13,9 @@ const MainDash = () => {
 	const { user } = useContext(AuthContext);
 	const [userData, setUserData] = useState([]);
 	useEffect(() => {
-		fetch(`http://localhost:5000/dashboard/${user?.email}`)
+		fetch(
+			`https://music-book-server-developersagorahmed.vercel.app/dashboard/${user?.email}`
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				setUserData(data);

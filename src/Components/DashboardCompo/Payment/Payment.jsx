@@ -21,7 +21,9 @@ const Payment = () => {
 	} = data;
 	const { id } = useParams();
 	useEffect(() => {
-		fetch(`http://localhost:5000/dashboard/payment/${id}`)
+		fetch(
+			`https://music-book-server-developersagorahmed.vercel.app/dashboard/payment/${id}`
+		)
 			.then((res) => res.json())
 			.then((dat) => setData(dat.result));
 	}, []);
@@ -29,7 +31,7 @@ const Payment = () => {
 
 	const handlePay = (payDat) => {
 		const payData = { data, email: user?.email };
-		fetch("http://localhost:5000/my-pay", {
+		fetch("https://music-book-server-developersagorahmed.vercel.app/my-pay", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json",

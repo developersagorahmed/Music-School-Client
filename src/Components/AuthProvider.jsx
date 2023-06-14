@@ -49,7 +49,10 @@ const AuthProvider = ({ children }) => {
 			setUser(LoggedInUser);
 			if (LoggedInUser?.email) {
 				axios
-					.post(`http://localhost:5000/jwt`, { email: LoggedInUser?.email })
+					.post(
+						`https://music-book-server-developersagorahmed.vercel.app/jwt`,
+						{ email: LoggedInUser?.email }
+					)
 					.then((data) =>
 						localStorage.setItem("access-token", data.data.token)
 					);
