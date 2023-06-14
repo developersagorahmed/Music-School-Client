@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
+import { BiLogOut } from "react-icons/bi";
 import Logo from "../../assets/logo.png";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
@@ -37,7 +37,7 @@ const Sidebar = () => {
 			</div>
 			{/* Sidebar */}
 			<div
-				className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+				className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-black w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
 					isActive && "-translate-x-full"
 				}  md:translate-x-0  transition duration-200 ease-in-out`}
 			>
@@ -45,7 +45,7 @@ const Sidebar = () => {
 					{/* Branding & Profile Info */}
 					<div>
 						<Link to="/dashboard">
-							<div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
+							<div className="w-full hidden md:flex py-2 justify-center items-center bg- mx-auto">
 								<img src={Logo} alt="" />
 							</div>
 						</Link>
@@ -59,12 +59,12 @@ const Sidebar = () => {
 								/>
 							</Link>
 							<Link to="/dashboard">
-								<h4 className="mx-2 mt-2 font-medium text-gray-800  hover:underline">
+								<h4 className="mx-2 mt-2 font-medium text-white  hover:underline">
 									{user?.displayName}
 								</h4>
 							</Link>
 							<Link to="/dashboard">
-								<p className="mx-2 mt-1 text-sm font-medium text-gray-600  hover:underline">
+								<p className="mx-2 mt-1 text-sm font-medium text-white  hover:underline">
 									{user?.email}
 								</p>
 							</Link>
@@ -121,10 +121,9 @@ const Sidebar = () => {
 				<div>
 					<button
 						onClick={handleLogOut}
-						className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
+						className="flex w-full items-center px-4 py-2 mt-5 text-white hover:bg-gray-300   hover:text-black transition-colors duration-300 transform"
 					>
-						<GrLogout className="w-5 h-5" />
-
+						<BiLogOut className="text-white w-6 mt-1   h-6" />
 						<span className="mx-4 font-medium">Logout</span>
 					</button>
 				</div>

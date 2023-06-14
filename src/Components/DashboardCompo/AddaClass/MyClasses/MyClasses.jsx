@@ -32,7 +32,7 @@ const MyClasses = () => {
 								<th className="font-bold text-lg">Price</th>
 								<th className="font-bold text-lg">Status</th>
 								<th className="font-bold text-lg">Update</th>
-								<th className="font-bold text-lg">DeedBack</th>
+								<th className="font-bold text-lg">FeedBack</th>
 							</tr>
 						</thead>
 						{data?.map((item) => (

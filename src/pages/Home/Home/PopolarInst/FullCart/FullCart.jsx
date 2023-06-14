@@ -95,7 +95,7 @@ const FullCart = ({ dat }) => {
 						onClick={buyBtn}
 						className="btn text-base bg-[#85CE85] font-bold"
 					>
-						Purchase
+						Select
 					</button>
 				</div>
 			</div>

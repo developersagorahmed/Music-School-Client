@@ -24,7 +24,6 @@ const ManageUserCard = ({ item }) => {
 						showConfirmButton: false,
 						timer: 1500,
 					});
-				
 				}
 			})
 			.catch((err) => console.log(err));
@@ -49,9 +48,10 @@ const ManageUserCard = ({ item }) => {
 						{role == "" && "Student"}
 						{role == "ins" && "Instructor"}
 						{role == "admin" && "Admin"}
-					</td>
+					</td>git
 					<td className=" font-semibold text-lg">
 						<button
+							disabled={role == "ins"}
 							onClick={() => handleRole("ins", _id)}
 							className="btn  bg-green-600 text-white hover:bg-black"
 						>
@@ -61,6 +61,7 @@ const ManageUserCard = ({ item }) => {
 
 					<td className="font-semibold text- text-lg">
 						<button
+							disabled={role == "admin"}
 							onClick={() => handleRole("admin", _id)}
 							className="btn bg-[#EB1A1A] text-white hover:bg-black"
 						>

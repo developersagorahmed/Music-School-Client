@@ -11,8 +11,8 @@ const PopolarInst = () => {
 
 	return (
 		<div>
-			<h2 className=" text-center text-3xl font-bold underline mb-10 text-[#E7B622]">
-				Popular Instructors Classes
+			<h2 className="uppercase text-center text-3xl font-bold underline mb-10 text-[#E7B622]">
+				Popular Classes
 			</h2>
 			<div className="my-10">
 				{data?.map((dat) => (

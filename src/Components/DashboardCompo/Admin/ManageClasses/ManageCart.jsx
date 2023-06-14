@@ -48,7 +48,7 @@ const ManageCart = ({ item }) => {
 					Swal.fire({
 						position: "top-center",
 						icon: "success",
-						title: "Successfully Login",
+						title: "Successfully Approved",
 						showConfirmButton: false,
 						timer: 1500,
 					});
@@ -98,7 +98,7 @@ const ManageCart = ({ item }) => {
 					<td className="font-semibold text- text-lg">{price}$</td>
 					<td className="font-semibold text- text-lg">
 						{approved == "app" && "Approved"}
-						{approved == "rej" && "reject"}
+						{approved == "rej" && "Reject"}
 						{approved == "pan" && "pening"}
 					</td>
 					<td className="font-semibold text- text-lg">
@@ -115,7 +115,7 @@ const ManageCart = ({ item }) => {
 							</button>
 
 							<button
-								onClick={() => handleStatus("den")}
+								onClick={() => handleStatus("rej")}
 								className={
 									approved !== "app"
 										? "btn bg-[#EB1A1A] text-white hover:bg-black"
