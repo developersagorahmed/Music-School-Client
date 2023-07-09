@@ -33,16 +33,13 @@ const EditClass = () => {
 			available_seats: upAblSet,
 			dur: upDur,
 		};
-		fetch(
-			`https://music-book-server-developersagorahmed.vercel.app/dashboard/myClasses/${_id}`,
-			{
-				method: "PUT",
-				headers: {
-					"content-type": "application/json",
-				},
-				body: JSON.stringify(updateData),
-			}
-		)
+		fetch(`https://music-book-server.vercel.app/dashboard/myClasses/${_id}`, {
+			method: "PUT",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(updateData),
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);

@@ -6,16 +6,13 @@ const ManageUserCard = ({ item }) => {
 	const { _id, email, name, role, photo } = item;
 
 	const handleRole = (role, _id) => {
-		fetch(
-			`https://music-book-server-developersagorahmed.vercel.app/role/update/${_id}`,
-			{
-				method: "PUT",
-				headers: {
-					"content-type": "application/json",
-				},
-				body: JSON.stringify({ role, _id }),
-			}
-		)
+		fetch(`https://music-book-server.vercel.app/role/update/${_id}`, {
+			method: "PUT",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify({ role, _id }),
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);

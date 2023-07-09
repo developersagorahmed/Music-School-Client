@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 const Instractor = () => {
 	const [data, setData] = useState([]);
-	fetch("https://music-book-server-developersagorahmed.vercel.app/instructors")
+	fetch("https://music-book-server.vercel.app/instructors")
 		.then((res) => res.json())
 		.then((data) => setData(data));
 	return (

@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 const ManageUser = () => {
 	const [user, setUser] = useState([]);
 	useEffect(() => {
-		fetch("https://music-book-server-developersagorahmed.vercel.app/allUser")
+		fetch("https://music-book-server.vercel.app/allUser")
 			.then((res) => res.json())
 			.then((data) => setUser(data));
 	}, [user]);

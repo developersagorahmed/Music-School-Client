@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const Main = () => {
 	const [mode, setMode] = useState(false);
+
 	return (
 		<>
 			<Navbar mode={mode} setMode={setMode}></Navbar>

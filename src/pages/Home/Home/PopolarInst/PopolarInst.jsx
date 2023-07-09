@@ -4,9 +4,7 @@ import FullCart from "./FullCart/FullCart";
 const PopolarInst = () => {
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch(
-			"https://music-book-server-developersagorahmed.vercel.app/topInstructorClass"
-		)
+		fetch("https://music-book-server.vercel.app/topInstructorClass")
 			.then((res) => res.json())
 			.then((allData) => setData(allData));
 	}, []);
@@ -17,10 +15,11 @@ const PopolarInst = () => {
 				Popular Classes
 			</h2>
 			<div className="my-10">
-				{data?.map((dat) => (
+				{data?.slice(0, 6).map((dat) => (
 					<FullCart key={dat._id} dat={dat}></FullCart>
 				))}
 			</div>
+			
 		</div>
 	);
 };

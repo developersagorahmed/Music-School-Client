@@ -30,16 +30,13 @@ const ClassCart = ({ item }) => {
 			navigate("/login");
 			return;
 		}
-		fetch(
-			"https://music-book-server-developersagorahmed.vercel.app/selectclass",
-			{
-				method: "POST",
-				headers: {
-					"content-type": "application/json",
-				},
-				body: JSON.stringify(buyData),
-			}
-		)
+		fetch("https://music-book-server.vercel.app/selectclass", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(buyData),
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.message) {
@@ -76,13 +73,14 @@ const ClassCart = ({ item }) => {
 					Available Sets : {available_seats - students}
 				</h2>
 				<h2 className="card-title">Price : {price}$</h2>
-				<h2 className="card-title">Class Duration : {dur}$</h2>
+				<h2 className="card-title">Class Duration : {dur} Month</h2>
 				<h2 className="card-title">Instructor Email : {instructor.email}$</h2>
 
 				<div className="card-actions flex mt-32 justify-end">
 					<button onClick={handleData} className="btn btn-primary">
 						Select
 					</button>
+					
 				</div>
 			</div>
 		</div>

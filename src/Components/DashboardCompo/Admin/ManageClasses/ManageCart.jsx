@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const ManageCart = ({ item }) => {
 	// console.log(item);
-	console.log(item);
+	// console.log(item);
 	const {
 		approved,
 		available_seats,
@@ -35,16 +35,13 @@ const ManageCart = ({ item }) => {
 
 		console.log(approved);
 
-		fetch(
-			`https://music-book-server-developersagorahmed.vercel.app/dashboard/myClasses/${_id}`,
-			{
-				method: "PUT",
-				headers: {
-					"content-type": "application/json",
-				},
-				body: JSON.stringify(updateData),
-			}
-		)
+		fetch(`https://music-book-server.vercel.app/dashboard/myClasses/${_id}`, {
+			method: "PUT",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(updateData),
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
@@ -61,7 +58,7 @@ const ManageCart = ({ item }) => {
 			.catch((err) => console.log(err));
 
 		// const stat = { option: option };
-		// fetch(`https://music-book-server-developersagorahmed.vercel.app/status/${_id}`, {
+		// fetch(`https://music-book-server.vercel.app/status/${_id}`, {
 		// 	method: "PUT",
 		// 	headers: {
 		// 		"content-type": "application/json",
@@ -77,7 +74,7 @@ const ManageCart = ({ item }) => {
 
 	return (
 		<>
-		<Helmet>
+			<Helmet>
 				<title>Admin || Manage User</title>
 			</Helmet>
 			<tbody>

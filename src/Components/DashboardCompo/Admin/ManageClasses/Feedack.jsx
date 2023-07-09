@@ -18,9 +18,7 @@ const Feedack = () => {
 	} = data;
 
 	useEffect(() => {
-		fetch(
-			`https://music-book-server-developersagorahmed.vercel.app/feedback/${id}`
-		)
+		fetch(`https://music-book-server.vercel.app/feedback/${id}`)
 			.then((res) => res.json())
 			.then((dat) => setData(dat));
 	}, []);
@@ -29,16 +27,13 @@ const Feedack = () => {
 
 	const feedback = (event) => {
 		event.preventDefault();
-		fetch(
-			`https://music-book-server-developersagorahmed.vercel.app/feedback/send/${id}`,
-			{
-				method: "PUT",
-				headers: {
-					"content-type": "application/json",
-				},
-				body: JSON.stringify({ feedbackData }),
-			}
-		)
+		fetch(`https://music-book-server.vercel.app/feedback/send/${id}`, {
+			method: "PUT",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify({ feedbackData }),
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);

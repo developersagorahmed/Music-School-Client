@@ -8,7 +8,7 @@ const MySelectedClass = () => {
 	const [data, setData] = useState([]);
 	useEffect(() => {
 		fetch(
-			`https://music-book-server-developersagorahmed.vercel.app/mySelectedClass/${user.email}`,
+			`https://music-book-server.vercel.app/mySelectedClass/${user.email}`,
 			{
 				headers: {
 					authorization: `Bearer ${localStorage.getItem("access-token")}`,

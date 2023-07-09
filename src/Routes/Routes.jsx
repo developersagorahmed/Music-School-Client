@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
 				element: <EditClass></EditClass>,
 				loader: ({ params }) =>
 					fetch(
-						`https://music-book-server-developersagorahmed.vercel.app/dashboard/myClasses/editClass/${params.id}`
+						`https://music-book-server.vercel.app/dashboard/myClasses/editClass/${params.id}`
 					),
 			},
 			{

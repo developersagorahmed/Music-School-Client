@@ -44,16 +44,13 @@ const Reginster = () => {
 							role: "",
 							photos: photo,
 						};
-						fetch(
-							"https://music-book-server-developersagorahmed.vercel.app/users",
-							{
-								method: "POST",
-								headers: {
-									"content-type": "application/json",
-								},
-								body: JSON.stringify(saveUser),
-							}
-						)
+						fetch("https://music-book-server.vercel.app/users", {
+							method: "POST",
+							headers: {
+								"content-type": "application/json",
+							},
+							body: JSON.stringify(saveUser),
+						})
 							.then((res) => res.json())
 							.then((data) => {
 								if (data.insertedId) {
@@ -105,16 +102,13 @@ const Reginster = () => {
 					photos: photo,
 				};
 
-				fetch(
-					"https://music-book-server-developersagorahmed.vercel.app/users",
-					{
-						method: "POST",
-						headers: {
-							"content-type": "application/json",
-						},
-						body: JSON.stringify(saveUser),
-					}
-				)
+				fetch("https://music-book-server.vercel.app/users", {
+					method: "POST",
+					headers: {
+						"content-type": "application/json",
+					},
+					body: JSON.stringify(saveUser),
+				})
 					.then((res) => res.json())
 					.then((data) => {
 						Swal.fire({

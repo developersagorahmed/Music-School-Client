@@ -22,12 +22,9 @@ const SelectedCart = ({ item, setData, data }) => {
 		}).then((result) => {
 			console.log(result);
 			if (result.isConfirmed) {
-				fetch(
-					`https://music-book-server-developersagorahmed.vercel.app/myselectedclass/${_id}`,
-					{
-						method: "DELETE",
-					}
-				)
+				fetch(`https://music-book-server.vercel.app/myselectedclass/${_id}`, {
+					method: "DELETE",
+				})
 					.then((res) => res.json())
 					.then((data) => {
 						console.log(data);

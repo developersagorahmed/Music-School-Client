@@ -34,16 +34,13 @@ const FullCart = ({ dat }) => {
 			navigate("/login");
 			return;
 		}
-		fetch(
-			"https://music-book-server-developersagorahmed.vercel.app/selectclass",
-			{
-				method: "POST",
-				headers: {
-					"content-type": "application/json",
-				},
-				body: JSON.stringify(buyData),
-			}
-		)
+		fetch("https://music-book-server.vercel.app/selectclass", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(buyData),
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.message) {

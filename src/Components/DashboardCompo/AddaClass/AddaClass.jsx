@@ -46,16 +46,13 @@ const AddaClass = () => {
 						dur: parseInt(dur),
 						approved: "pan",
 					};
-					fetch(
-						"https://music-book-server-developersagorahmed.vercel.app/addAClass",
-						{
-							method: "POST",
-							headers: {
-								"content-type": "application/json",
-							},
-							body: JSON.stringify(newData),
-						}
-					)
+					fetch("https://music-book-server.vercel.app/addAClass", {
+						method: "POST",
+						headers: {
+							"content-type": "application/json",
+						},
+						body: JSON.stringify(newData),
+					})
 						.then((res) => res.json())
 						.then((data) => {
 							if (data.acknowledged == true) {

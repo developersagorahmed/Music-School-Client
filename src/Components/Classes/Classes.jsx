@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 const Classes = () => {
 	const [data, setData] = useState([]);
-	fetch("https://music-book-server-developersagorahmed.vercel.app/classes")
+	fetch("https://music-book-server.vercel.app/class")
 		.then((res) => res.json())
 		.then((datas) => setData(datas));
 	return (

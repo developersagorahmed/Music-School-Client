@@ -8,7 +8,7 @@ const MyClasses = () => {
 	const { user } = useContext(AuthContext);
 	useEffect(() => {
 		fetch(
-			`https://music-book-server-developersagorahmed.vercel.app/dashboard/myClasses/${user?.email}`
+			`https://music-book-server.vercel.app/dashboard/myClasses/${user?.email}`
 		)
 			.then((res) => res.json())
 			.then((datas) => setData(datas));
